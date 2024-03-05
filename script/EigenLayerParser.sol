@@ -46,3 +46,20 @@ contract EigenLayerParser is Script, DSTest {
         eigenStrat = StrategyBase(stdJson.readAddress(addressJson, ".eigenStrat"));
     }
 }
+
+
+#
+    function parseEigenLayerParams() internal {
+        configJson = vm.readFile("data/participants.json");
+        numDis = stdJson.readUint(configJson, ".numDis");
+        numDln = stdJson.readUint(configJson, ".numDln");
+        numStaker = stdJson.readUint(configJson, ".numStaker");
+
+        addressJson = vm.readFile("data/addresses.json");
+        delegation = DelegationManager(stdJson.readAddress(addressJson, ".delegation"));
+        strategyManager = StrategyManager(stdJson.readAddress(addressJson, ".strategyManager"));
+        weth = IERC20(stdJson.readAddress(addressJson, ".weth"));
+        wethStrat = StrategyBase(stdJson.readAddress(addressJson, ".wethStrat"));
+        eigen = IERC20(stdJson.readAddress(addressJson, ".eigen"));
+        eigenStrat = StrategyBase(stdJson.readAddress(addressJson, ".eigenStrat"));
+    }
